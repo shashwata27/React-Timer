@@ -29,29 +29,33 @@ export default class App extends React.Component {
   };
 
   renderButtons = () => {
-    return !this.state.start && !this.state.ranBefore ? (
+    let handler, text, color, icon;
+    if (!this.state.start && !this.state.ranBefore) {
+      handler = this.handelStart;
+      text = "Start";
+      color = "green";
+      icon = iconConfig.play;
+    } else {
+      if (this.state.start && this.state.ranBefore) {
+        handler = this.handelPause;
+        text = "Pause";
+        color = "yellow";
+        icon = iconConfig.pause;
+      } else {
+        handler = this.handelResume;
+        text = "Resume";
+        color = "orange";
+        icon = iconConfig.play;
+      }
+    }
+
+    return (
       <Buttons
-        handler={this.handelStart}
-        text="Start"
-        color="green"
         float="right floated"
-        icon={iconConfig.play}
-      />
-    ) : this.state.start && this.state.ranBefore ? (
-      <Buttons
-        handler={this.handelPause}
-        text="Pause"
-        color="yellow"
-        float="right floated"
-        icon={iconConfig.pause}
-      />
-    ) : (
-      <Buttons
-        handler={this.handelResume}
-        text="Resume"
-        color="orange"
-        float="right floated"
-        icon={iconConfig.play}
+        handler={handler}
+        text={text}
+        color={color}
+        icon={icon}
       />
     );
   };
