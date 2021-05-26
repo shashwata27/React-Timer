@@ -1,4 +1,4 @@
-#_React Timer_
+# _React Timer_
 
 - Different States in the App
 
