@@ -1,5 +1,7 @@
 # _React Timer_
 
+#### _*note*_ _past= ranBefore state attribute_
+
 - Different States in the App
 
   <img title="States" src="images/state.png" >
