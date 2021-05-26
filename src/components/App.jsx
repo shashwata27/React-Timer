@@ -1,6 +1,7 @@
 import React from "react";
 import Buttons from "./Buttons";
 import iconConfig from "../utils/iconConfig";
+import TimeFormatter from "../utils/timeFormatter";
 
 export default class App extends React.Component {
   state = { timer: 0, start: false, past: false };
@@ -63,7 +64,7 @@ export default class App extends React.Component {
             <div className="ui header">Timer</div>
             <div className="content">
               <i className="clock icon"></i>
-              <span>{this.state.timer}</span>
+              <span>{TimeFormatter(this.state.timer)}</span>
             </div>
             <div className="extra content">
               {this.renderButtons()}
