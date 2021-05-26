@@ -4,32 +4,32 @@ import iconConfig from "../utils/iconConfig";
 import timeFormatter from "../utils/timeFormatter";
 
 export default class App extends React.Component {
-  state = { timer: 0, start: false, past: false };
+  state = { timer: 0, start: false, ranBefore: false };
   ref = null;
 
   handelStart = () => {
-    this.setState({ start: true, past: true });
+    this.setState({ start: true, ranBefore: true });
     this.ref = setInterval(() => {
       this.setState({ timer: this.state.timer + 1 });
     }, 10);
   };
   handelPause = () => {
-    this.setState({ start: false, past: true });
+    this.setState({ start: false, ranBefore: true });
     clearInterval(this.ref);
   };
   handelResume = () => {
-    this.setState({ start: true, past: true });
+    this.setState({ start: true, ranBefore: true });
     this.ref = setInterval(() => {
       this.setState({ timer: this.state.timer + 1 });
     }, 10);
   };
   handelReset = () => {
-    this.setState({ timer: 0, start: false, past: false });
+    this.setState({ timer: 0, start: false, ranBefore: false });
     clearInterval(this.ref);
   };
 
   renderButtons = () => {
-    return !this.state.start && !this.state.past ? (
+    return !this.state.start && !this.state.ranBefore ? (
       <Buttons
         handler={this.handelStart}
         text="Start"
@@ -37,7 +37,7 @@ export default class App extends React.Component {
         float="right floated"
         icon={iconConfig.play}
       />
-    ) : this.state.start && this.state.past ? (
+    ) : this.state.start && this.state.ranBefore ? (
       <Buttons
         handler={this.handelPause}
         text="Pause"
@@ -71,7 +71,7 @@ export default class App extends React.Component {
               handler={this.handelReset}
               text="Reset"
               color="red"
-              disabled={!this.state.start && !this.state.past}
+              disabled={!this.state.start && !this.state.ranBefore}
               icon={iconConfig.reset}
             />
           </div>
