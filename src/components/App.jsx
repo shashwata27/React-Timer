@@ -1,13 +1,11 @@
 import React from "react";
 import Buttons from "./Buttons";
-const iconConfig = {
-  play: <i class="play icon"></i>,
-  pause: <i class="pause icon"></i>,
-  reset: <i class="history icon"></i>,
-};
+import iconConfig from "../utils/iconConfig";
+
 export default class App extends React.Component {
   state = { timer: 0, start: false, past: false };
   ref = null;
+
   handelStart = () => {
     this.setState({ start: true, past: true });
     this.ref = setInterval(() => {
@@ -56,6 +54,7 @@ export default class App extends React.Component {
       />
     );
   };
+
   render() {
     return (
       <div className="ui segment">
