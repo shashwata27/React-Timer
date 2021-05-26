@@ -1,6 +1,9 @@
 # _React Timer_
 
-_*Note*_ _past= ranBefore state attribute_
+### _Note_
+
+_state attribute updated_
+_past= ranBefore_
 
 - Different States in the App
 
