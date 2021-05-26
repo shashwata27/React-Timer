@@ -1,7 +1,7 @@
 import React from "react";
 import Buttons from "./Buttons";
 import iconConfig from "../utils/iconConfig";
-import TimeFormatter from "../utils/timeFormatter";
+import timeFormatter from "../utils/timeFormatter";
 
 export default class App extends React.Component {
   state = { timer: 0, start: false, past: false };
@@ -58,24 +58,22 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="ui segment">
-        <div className="ui center aligned grid">
-          <div className="ui card">
-            <div className="ui header">Timer</div>
-            <div className="content">
-              <i className="clock icon"></i>
-              <span>{TimeFormatter(this.state.timer)}</span>
-            </div>
-            <div className="extra content">
-              {this.renderButtons()}
-              <Buttons
-                handler={this.handelReset}
-                text="Reset"
-                color="red"
-                disabled={!this.state.start && !this.state.past}
-                icon={iconConfig.reset}
-              />
-            </div>
+      <div className="conatiner">
+        <div className="ui card">
+          <div className="ui header">Timer</div>
+          <div className="mainDisplay content">
+            <i className="clock icon"></i>
+            <span>{timeFormatter(this.state.timer)}</span>
+          </div>
+          <div className="extra content">
+            {this.renderButtons()}
+            <Buttons
+              handler={this.handelReset}
+              text="Reset"
+              color="red"
+              disabled={!this.state.start && !this.state.past}
+              icon={iconConfig.reset}
+            />
           </div>
         </div>
       </div>
