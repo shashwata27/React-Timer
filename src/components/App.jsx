@@ -1,7 +1,8 @@
 import React from "react";
-import Buttons from "./Buttons";
+import Button from "./Button";
 import iconConfig from "../utils/iconConfig";
 import timeFormatter from "../utils/timeFormatter";
+import strings from "../utils/strings";
 
 export default class App extends React.Component {
   state = { timer: 0, start: false, ranBefore: false };
@@ -17,12 +18,7 @@ export default class App extends React.Component {
     this.setState({ start: false, ranBefore: true });
     clearInterval(this.ref);
   };
-  handelResume = () => {
-    this.setState({ start: true, ranBefore: true });
-    this.ref = setInterval(() => {
-      this.setState({ timer: this.state.timer + 1 });
-    }, 10);
-  };
+
   handelReset = () => {
     this.setState({ timer: 0, start: false, ranBefore: false });
     clearInterval(this.ref);
@@ -32,25 +28,25 @@ export default class App extends React.Component {
     let handler, text, color, icon;
     if (!this.state.start && !this.state.ranBefore) {
       handler = this.handelStart;
-      text = "Start";
-      color = "green";
+      text = strings.text.start;
+      color = strings.color.green;
       icon = iconConfig.play;
     } else {
       if (this.state.start && this.state.ranBefore) {
         handler = this.handelPause;
-        text = "Pause";
-        color = "yellow";
+        text = strings.text.pause;
+        color = strings.color.yellow;
         icon = iconConfig.pause;
       } else {
-        handler = this.handelResume;
-        text = "Resume";
-        color = "orange";
+        handler = this.handelStart;
+        text = strings.text.resume;
+        color = strings.color.orange;
         icon = iconConfig.play;
       }
     }
 
     return (
-      <Buttons
+      <Button
         float="right floated"
         handler={handler}
         text={text}
@@ -66,15 +62,15 @@ export default class App extends React.Component {
         <div className="ui card">
           <div className="ui header">Timer</div>
           <div className="mainDisplay content">
-            <i className="clock icon"></i>
+            {iconConfig.clock}
             <span>{timeFormatter(this.state.timer)}</span>
           </div>
           <div className="extra content">
             {this.renderButtons()}
-            <Buttons
+            <Button
               handler={this.handelReset}
-              text="Reset"
-              color="red"
+              text={strings.text.reset}
+              color={strings.color.red}
               disabled={!this.state.start && !this.state.ranBefore}
               icon={iconConfig.reset}
             />
