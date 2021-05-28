@@ -6,43 +6,48 @@ import strings from "../utils/strings";
 import timeSVG from "../svg/time.svg";
 
 export default class App extends React.Component {
-  state = { timer: 0, start: false, ranBefore: false };
-  ref = null;
-
   // clockStatus=0 not started ever
   //            =1 running
   //            =2 paused
+  state = { timer: 0, clockStaus: 0 };
+  ref = null;
 
   handelStart = () => {
-    this.setState({ start: true, ranBefore: true });
+    // sets status to running
+    this.setState({ clockStaus: 1 });
     this.ref = setInterval(() => {
       this.setState({ timer: this.state.timer + 1 });
     }, 10);
   };
   handelPause = () => {
-    this.setState({ start: false, ranBefore: true });
+    // sets to paused
+    this.setState({ clockStaus: 2 });
     clearInterval(this.ref);
   };
 
   handelReset = () => {
-    this.setState({ timer: 0, start: false, ranBefore: false });
+    // resets
+    this.setState({ timer: 0, clockStaus: 0 });
     clearInterval(this.ref);
   };
 
   renderButtons = () => {
     let handler, text, color, icon;
-    if (!this.state.start && !this.state.ranBefore) {
+    // when never ran render start btn
+    if (this.state.clockStaus === 0) {
       handler = this.handelStart;
       text = strings.text.start;
       color = strings.color.green;
       icon = iconConfig.play;
     } else {
-      if (this.state.start && this.state.ranBefore) {
+      // when running render pause btn
+      if (this.state.clockStaus === 1) {
         handler = this.handelPause;
         text = strings.text.pause;
         color = strings.color.yellow;
         icon = iconConfig.pause;
       } else {
+        // when pause render resume btn
         handler = this.handelStart;
         text = strings.text.resume;
         color = strings.color.orange;
@@ -76,7 +81,7 @@ export default class App extends React.Component {
               handler={this.handelReset}
               text={strings.text.reset}
               color={strings.color.red}
-              disabled={!this.state.start && !this.state.ranBefore}
+              disabled={!this.state.clockStaus}
               icon={iconConfig.reset}
             />
           </div>
