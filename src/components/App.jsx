@@ -3,10 +3,15 @@ import Button from "./Button";
 import iconConfig from "../utils/iconConfig";
 import timeFormatter from "../utils/timeFormatter";
 import strings from "../utils/strings";
+import timeSVG from "../svg/time.svg";
 
 export default class App extends React.Component {
   state = { timer: 0, start: false, ranBefore: false };
   ref = null;
+
+  // clockStatus=0 not started ever
+  //            =1 running
+  //            =2 paused
 
   handelStart = () => {
     this.setState({ start: true, ranBefore: true });
@@ -75,6 +80,9 @@ export default class App extends React.Component {
               icon={iconConfig.reset}
             />
           </div>
+        </div>
+        <div className="svgImage">
+          <img src={timeSVG} alt="Time vector" />
         </div>
       </div>
     );

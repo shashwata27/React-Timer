@@ -4,15 +4,36 @@
   justify-content: center;
   align-items: flex-start;
   padding: 40px;
-  background-color: rgb(40, 31, 49);
+
+  background: rgb(0, 196, 2);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 196, 2, 1) 0%,
+    rgba(3, 208, 209, 1) 50%,
+    rgba(55, 0, 255, 1) 100%
+  );
 }
 
 .ui.card {
-  background-color: rgb(143, 198, 245);
+  background-color: rgb(126, 191, 248);
   padding: 10px;
 }
 
 .ui.card > .mainDisplay {
   background-color: white;
   border-radius: 4px;
+}
+.ui.card > .mainDisplay:hover {
+  box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.4);
+}
+.ui.header {
+  color: white;
+}
+.ui.button:hover {
+  box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.4);
+}
+
+.conatiner .svgImage img {
+  width: 100vh;
+  height: -50vh;
 }
