@@ -6,7 +6,7 @@ import strings from "../utils/strings";
 import constants from "../utils/constants";
 import timeSVG from "../svg/time.svg";
 
-// destructuring imported util files
+// destructuring imported utils files
 const { clock } = constants;
 const { text, color } = strings;
 
